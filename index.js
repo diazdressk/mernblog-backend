@@ -8,9 +8,7 @@ import checkAuth from './utils/checkAuth.js';
 import handleValidationErrors from './utils/handleValidationErrors.js';
 
 mongoose
-  .connect(
-    'mongodb+srv://aalt:ilove1993@cluster0.ede50sz.mongodb.net/blog?retryWrites=true&w=majority' /* blog?- база данных */,
-  )
+  .connect(process.env.MONGODB_URI /* blog?- база данных */)
   .then(() => {
     console.log('DB connected');
   })
@@ -67,7 +65,7 @@ app.patch(
   PostController.update,
 );
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) return console.log(err);
   console.log('Server work');
 });
